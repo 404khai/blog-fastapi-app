@@ -1,49 +1,26 @@
+"use client";
 import { useState } from "react";
-import api from "../api/client";
+import { api } from "../api/api";
 
-export default function CreateUserForm() {
+export default function CreateUser() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const createUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const res = await api.post("/users/new", { name, email });
-      setMessage(`User created: ${res.data.name}`);
-      setName("");
-      setEmail("");
-    } catch (error: any) {
-      setMessage(error.response?.data?.detail || "Error creating user");
-    }
+    const user = await api.post("/users/new", { name, email, password });
+    localStorage.setItem("userId", user.id);
+    alert(`Welcome ${user.name}!`);
   };
 
   return (
-    <div className="p-6 bg-white shadow-md rounded-xl">
-      <h2 className="text-xl font-semibold mb-4">Create New User</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border rounded-lg p-2"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border rounded-lg p-2"
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
-        >
-          Create User
-        </button>
-        {message && <p className="text-sm mt-2">{message}</p>}
-      </form>
-    </div>
+    <form onSubmit={createUser} className="max-w-md mx-auto mt-10 space-y-3 border border-black p-6 rounded">
+      <h2 className="text-xl font-bold mb-2">Create User</h2>
+      <input placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
+      <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+      <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <button type="submit">Create Account</button>
+    </form>
   );
 }
