@@ -8,7 +8,9 @@ export default function CommentSection({ postId }: { postId: number }) {
 
   const loadComments = () => api.get(`/comments/post/${postId}`).then(setComments);
 
-  useEffect(loadComments, [postId]);
+  useEffect(() => {
+    loadComments();
+  }, [postId]);
 
   const addComment = async () => {
     const ownerId = localStorage.getItem("userId");

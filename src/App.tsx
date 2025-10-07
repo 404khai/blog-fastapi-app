@@ -1,6 +1,6 @@
+import CreatePost from "./components/CreatePost";
 import CreateUser from "./components/CreateUser";
-import CreatePost from "../components/CreatePost";
-import PostFeed from "../components/PostFeed";
+import PostFeed from "./components/PostFeed";
 
 export default function App() {
   return (
