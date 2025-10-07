@@ -1,18 +1,14 @@
-import CreateUserForm from "./components/CreateUserForm";
-import CreatePostForm from "./components/CreatePostForm";
-import CreateCommentForm from "./components/CreateCommentForm";
+import CreateUser from "./components/CreateUser";
+import CreatePost from "../components/CreatePost";
+import PostFeed from "../components/PostFeed";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-100 p-10">
-      <h1 className="text-3xl font-bold text-center mb-8">
-        FastAPI Frontend Demo
-      </h1>
-      <div className="grid md:grid-cols-3 gap-6">
-        <CreateUserForm />
-        <CreatePostForm />
-        <CreateCommentForm />
-      </div>
-    </div>
+    <main className="p-8 space-y-8">
+      <h1 className="text-3xl font-bold text-center">Simple Social App</h1>
+      <CreateUser />
+      <CreatePost />
+      <PostFeed />
+    </main>
   );
 }
