@@ -1,2 +1,13 @@
 @import "tailwindcss";
 
+body {
+  @apply bg-white text-black;
+}
+
+button {
+  @apply bg-black text-white rounded px-4 py-2 hover:bg-gray-800 transition;
+}
+
+input, textarea {
+  @apply border border-black p-2 w-full mb-2;
+}

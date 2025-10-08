@@ -25,7 +25,7 @@ export default function CommentSection({ postId }: { postId: number }) {
       <h4 className="font-semibold mb-1">Comments</h4>
       {comments.map(c => (
         <p key={c.id} className="ml-2 border-b border-black py-1 text-sm">
-          <b>User {c.ownerId}:</b> {c.comment}
+          <b>{c.owner.name}:</b> {c.comment}
         </p>
       ))}
       <div className="flex mt-2">
